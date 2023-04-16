@@ -40,9 +40,14 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
 
       - name: Empty S3 bucket
+        # run: |
+        #   BUCKET_NAME="cjtantay-dot-com-bucket"
+        #   aws s3 rm s3://$BUCKET_NAME --recursive
         run: |
           BUCKET_NAME="cjtantay-dot-com-bucket"
-          aws s3 rm s3://$BUCKET_NAME --recursive
+          aws --version
+          aws configure get region
+          aws s3 rm s3://$BUCKET_NAME --recursive || echo "Failed to empty the S3 bucket."
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
