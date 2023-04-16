@@ -31,6 +31,31 @@ resource "aws_s3_bucket_website_configuration" "sub_domain" {
   }
 }
 
+resource "aws_s3_bucket_policy" "allow_access_from_cloudfront" {
+  bucket = aws_s3_bucket.sub_domain.id
+  policy = <<EOT 
+{
+    "Version": "2012-10-17",
+    "Statement": {
+        "Sid": "AllowCloudFrontServicePrincipalReadOnly",
+        "Effect": "Allow",
+        "Principal": {
+            "Service": "cloudfront.amazonaws.com"
+        },
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::www.cjtantay.com/*",
+        "Condition": {
+            "StringEquals": {
+                "AWS:SourceArn": "arn:aws:cloudfront::222532839203:distribution/E1YD8RWD2SNA0E"
+            }
+        }
+    }
+}
+EOT
+}
+
+###
+
 resource "aws_s3_bucket" "root_domain" {
   bucket = local.root_domain
 }
