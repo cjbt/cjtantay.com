@@ -11,6 +11,10 @@ locals {
 
 resource "aws_s3_bucket" "cjtantay-dot-com" {
   bucket = local.bucket_name
+
+  lifecycle {
+    ignore_changes = [bucket]
+  }
 }
 
 resource "aws_s3_bucket_acl" "cjtantay-dot-com" {
