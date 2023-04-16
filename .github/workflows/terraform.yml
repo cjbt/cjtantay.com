@@ -39,15 +39,13 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
 
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Empty S3 bucket
-        # run: |
-        #   BUCKET_NAME="cjtantay-dot-com-bucket"
-        #   aws s3 rm s3://$BUCKET_NAME --recursive
         run: |
           BUCKET_NAME="cjtantay-dot-com-bucket"
-          aws --version
-          aws configure get region
-          aws s3 rm s3://$BUCKET_NAME --recursive 2>error.log || (cat error.log && exit 1)
+          aws s3 rm s3://$BUCKET_NAME --recursive
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
