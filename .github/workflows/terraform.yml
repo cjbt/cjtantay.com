@@ -25,7 +25,7 @@ jobs:
 
       - name: Check and import S3 Bucket
         run: |
-          BUCKET=_NAME="cjbtantay-dot-com-bucket"
+          BUCKET=_NAME="cjtantay-dot-com-bucket"
           if aws s3api head-bucket --bucket $BUCKET_NAME --region us-east-1 2>/dev/null; then
             echo "Bucket exists, importing..."
             terraform import aws_s3_bucket.cjtantay-dot-com $BUCKET_NAME
