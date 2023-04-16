@@ -30,7 +30,9 @@ jobs:
 
       # Generates an execution plan for Terraform
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan \
+          -var="aws_access_key"=${{ secrets.AWS_ACCESS_KEY }} \
+          -var="aws_secret_key"=${{ secrets.AWS_SECRET_KEY }}
         working-directory: './tf'
 
         # On push to "main", build or change infrastructure according to Terraform configuration files
