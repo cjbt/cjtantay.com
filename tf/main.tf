@@ -31,7 +31,8 @@ locals {
 }
 
 resource "aws_s3_bucket" "sub_domain" {
-  bucket = local.sub_domain
+  bucket        = local.sub_domain
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_acl" "sub_domain" {
