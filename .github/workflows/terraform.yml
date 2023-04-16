@@ -47,7 +47,7 @@ jobs:
           BUCKET_NAME="cjtantay-dot-com-bucket"
           aws --version
           aws configure get region
-          aws s3 rm s3://$BUCKET_NAME --recursive || (echo "Failed to empty the S3 bucket." && exit 1)
+          aws s3 rm s3://$BUCKET_NAME --recursive 2>error.log || (cat error.log && exit 1)
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
