@@ -28,7 +28,9 @@ jobs:
           BUCKET_NAME="cjtantay-dot-com-bucket"
           if aws s3api head-bucket --bucket $BUCKET_NAME --region us-east-1 2>/dev/null; then
             echo "Bucket exists, importing..."
-            terraform import aws_s3_bucket.cjtantay-dot-com $BUCKET_NAME
+            terraform import aws_s3_bucket.cjtantay-dot-com $BUCKET_NAME \
+            -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" \
+            -var="aws_secret_key=${{ secrets.AWS_SECRET_KEY }}"
           else
             echo "Bucket does not exist, proceeding with creation..."
           fi
