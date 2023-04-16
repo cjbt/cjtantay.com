@@ -80,3 +80,6 @@ jobs:
         run: |
           BUCKET_NAME="cjtantay-dot-com-bucket"
           aws s3 sync build s3://$BUCKET_NAME
+
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation --distribution-id E170ZWDOZBGPDI --paths "/*"
