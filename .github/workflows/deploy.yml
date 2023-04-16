@@ -29,7 +29,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: us-east-1
 
-      - uses: actions/checkout@v3
       - name: Empty sub domain bucket
         run: |
           BUCKET_NAME="www.cjtantay.com"
