@@ -1,4 +1,4 @@
-name: 'Deploy to S3'
+name: 'Deploy'
 
 on:
   workflow_call:
@@ -30,23 +30,26 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: us-east-1
 
-      - name: Check and Apply
+      - name: Terraform Apply
         run: |
-          BUCKET_NAME="cjtantay.com"
-          if aws s3api head-bucket --bucket $BUCKET_NAME --region us-east-1 2>/dev/null; then
-            echo "Bucket exists."
-          else
-            echo "Creating bucket..."
-            terraform apply -auto-approve \
-            -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" \
-            -var="aws_secret_key=${{ secrets.AWS_SECRET_KEY }}"
-          fi
+          echo "Creating bucket..."
+          terraform apply -auto-approve \
+          -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" \
+          -var="aws_secret_key=${{ secrets.AWS_SECRET_KEY }}"
         working-directory: './tf'
 
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Empty S3 Bucket
+      - name: Empty S3 Sub-domain Bucket
+        run: |
+          BUCKET_NAME="www.cjtantay.com"
+          aws s3 rm s3://$BUCKET_NAME --recursive
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Empty S3 Root-domain Bucket
         run: |
           BUCKET_NAME="cjtantay.com"
           aws s3 rm s3://$BUCKET_NAME --recursive
@@ -78,7 +81,7 @@ jobs:
 
       - name: Upload to S3
         run: |
-          BUCKET_NAME="cjtantay.com"
+          BUCKET_NAME="www.cjtantay.com"
           aws s3 sync build s3://$BUCKET_NAME
 
       - name: Invalidate CloudFront Cache
