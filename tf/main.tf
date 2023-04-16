@@ -1,11 +1,8 @@
 provider "aws" {
   region = "us-east-1"
 
-  access_key = var.aws_access_key_id
-  secret_key = var.aws_secret_access_key
-  assume_role {
-    role_arn = "arn:aws:iam::222532839203:role/terraform-deploy"
-  }
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 }
 
 locals {
@@ -30,13 +27,5 @@ resource "aws_s3_bucket_website_configuration" "cjtantay-dot-com" {
 
   error_document {
     key = "index.html"
-  }
-}
-
-resource "null_resource" "upload_files" {
-  depends_on = [aws_s3_bucket_website_configuration.cjtantaydotcom]
-
-  provisioner "local-exec" {
-    command = "../scripts/upload.sh ${local.bucket_name}"
   }
 }
