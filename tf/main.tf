@@ -30,7 +30,8 @@ module "s3_bucket" {
 }
 
 module "cloudfront_distribution" {
-  source                     = "./modules/cloudfront_distribution"
-  depends_on                 = [module.s3_bucket]
-  aws_sub_domain_bucket_name = module.s3_bucket.aws_sub_domain_bucket_name
+  source                      = "./modules/cloudfront_distribution"
+  depends_on                  = [module.s3_bucket]
+  aws_sub_domain_bucket_name  = module.s3_bucket.aws_sub_domain_bucket_name
+  aws_root_domain_bucket_name = module.s3_bucket.aws_root_domain_bucket_name
 }
