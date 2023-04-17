@@ -8,7 +8,7 @@
 </svelte:head>
 
 <div class="header">
-	<h1>C. J. Tantay</h1>
+	<h1><a href="/">C. J. Tantay</a></h1>
 	<div>
 		<p>
 			Software Engineer - @ <a href="https://www.hotelengine.com/">hotel engine</a>, prev
@@ -18,15 +18,17 @@
 
 	<div>
 		<p>
-			my socials - <a href="https://www.hotelengine.com/">github</a>,
-			<a href="https://www.linkedin.com/in/cjtantay/">linkedin</a>,
+			my socials - <a href="https://github.com/cjbt">github</a>,
+			<a href="https://www.linkedin.com/in/cjtantay">linkedin</a>,
 			<a href="https://twitter.com/cjtantay">twitter</a>
 		</p>
 	</div>
 	<div>
 		<nav>
-			<p>my stack - <a href="/frontend">frontend</a>, <a href="/backend">backend</a></p>
-			<div class="blog-container"><p><a href="/blog">my blog</a></p></div>
+			<p>
+				my stack - <a href="/frontend">frontend</a>, <a href="/backend">backend</a>,
+				<a href="/blog">my blog</a>
+			</p>
 		</nav>
 	</div>
 </div>

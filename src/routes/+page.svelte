@@ -2,3 +2,23 @@
 	<title>cj's site</title>
 	<meta name="description" content="cj tantay's personal site" />
 </svelte:head>
+
+<h4>this static site was made with:</h4>
+<ul>
+	<li>sveltekit</li>
+	<li>vite</li>
+	<li>jsdoc for typing</li>
+	<li>tailwind css (soon)</li>
+</ul>
+<h4>ci/cd:</h4>
+<ul>
+	<li>github actions</li>
+</ul>
+<h4>and deployed with:</h4>
+<ul>
+	<li>terraform (IaC)</li>
+	<li>aws s3 bucket</li>
+	<li>aws cloudfront</li>
+	<li>aws route53</li>
+</ul>
+<a href="https://github.com/cjbt/cjtantay.com">repo</a>
