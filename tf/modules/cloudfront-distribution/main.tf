@@ -1,24 +1,26 @@
 locals {
-  s3_sub_domain = "www.cjtantay.com"
+  s3_sub_domain  = "www.cjtantay.com"
   s3_root_domain = "cjtantay.com"
+
+  # TODO - Add looping for multiple subdomains
 }
 
 # Create S3 bucket for subdomain
 
 resource "aws_cloudfront_distribution" "sub_domain_s3_distribution" {
   origin {
-    domain_name = var.aws_sub_domain_bucket_name
+    domain_name = var.s3_sub_domain_endpoint
     origin_id   = local.s3_sub_domain
 
     custom_origin_config {
       origin_protocol_policy = "http-only"
-      http_port  = "80"
-      https_port = "443"
-      origin_ssl_protocols = ["TLSv1.2"]
+      http_port              = "80"
+      https_port             = "443"
+      origin_ssl_protocols   = ["TLSv1", "TLSv1.1", "TLSv1.2"]
     }
   }
 
-  aliases = [local.s3_sub_domain]
+  aliases             = [local.s3_sub_domain]
 
   enabled             = true
   is_ipv6_enabled     = true
@@ -56,14 +58,14 @@ resource "aws_cloudfront_distribution" "sub_domain_s3_distribution" {
 
 resource "aws_cloudfront_distribution" "root_domain_s3_distribution" {
   origin {
-    domain_name = var.aws_root_domain_bucket_name
+    domain_name = var.s3_root_domain_endpoint
     origin_id   = local.s3_root_domain
 
     custom_origin_config {
       origin_protocol_policy = "http-only"
       http_port  = "80"
       https_port = "443"
-      origin_ssl_protocols = ["TLSv1.2"]
+      origin_ssl_protocols = ["TLSv1", "TLSv1.1", "TLSv1.2"]
     }
   }
 
