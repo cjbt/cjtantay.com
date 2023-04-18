@@ -31,6 +31,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: terraform-init
     steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         run: |
@@ -43,6 +47,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: terraform-plan
     steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Terraform Apply
         if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
         run: |
