@@ -1,0 +1,18 @@
+---
+interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+}
+
+const {
+  title = "C. J. Tantay: Personal Site",
+  description = "The personal site of C. J. Tantay",
+} = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="description" property="og:description" content={description} />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
