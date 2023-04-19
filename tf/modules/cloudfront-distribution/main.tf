@@ -5,6 +5,14 @@ locals {
   # TODO - Add looping for multiple subdomains
 }
 
+resource "aws_cloudfront_function" "astro_function" {
+  name    = "AstroFunction"
+  runtime = "cloudfront-js-1.0"
+  comment = "Allows astro multi page routing to work with cloudfront"
+  publish = true
+  code    = file("${path.module}/astro-function.js")
+}
+
 # Create S3 bucket for subdomain
 
 resource "aws_cloudfront_distribution" "sub_domain_s3_distribution" {
@@ -37,6 +45,11 @@ resource "aws_cloudfront_distribution" "sub_domain_s3_distribution" {
     min_ttl                = 0
     default_ttl            = 86400
     max_ttl                = 31536000
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.astro_function.arn
+    }
   }
 
   price_class = "PriceClass_200"
@@ -86,6 +99,11 @@ resource "aws_cloudfront_distribution" "root_domain_s3_distribution" {
     min_ttl                = 0
     default_ttl            = 86400
     max_ttl                = 31536000
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.astro_function.arn
+    }
   }
 
   price_class = "PriceClass_200"
@@ -102,3 +120,5 @@ resource "aws_cloudfront_distribution" "root_domain_s3_distribution" {
     minimum_protocol_version = "TLSv1.2_2021"
   }
 }
+
+
