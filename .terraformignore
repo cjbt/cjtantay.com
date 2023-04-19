@@ -1,0 +1,31 @@
+# local .terraform directory
+
+\*_/.terraform/_
+
+# terraform state files
+
+_.tfstate
+_.tfstate.\*
+
+# Mac OS folder information
+
+.DS_Store
+
+# Project
+
+.git/
+.github/
+.husky/
+.vscode/
+packages/
+projects/
+scripts/
+.gitignore
+.npmrc
+.nvmrc
+README.md
+docker-compose.yml
+package.json
+tsconfig.json
+turbo.json
+yarn.lock

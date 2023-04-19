@@ -1,4 +1,4 @@
-export default function handler(event) {
+function handler(event) {
   var request = event.request;
   var uri = request.uri;
 
