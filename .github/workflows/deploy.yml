@@ -1,0 +1,39 @@
+name: "Deploy"
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  upload_project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: us-east-1
+
+      - name: Empty sub domain bucket
+        run: |
+          BUCKET_NAME="www.cjtantay.com"
+          aws s3 rm s3://$BUCKET_NAME --recursive
+      - name: Upload to S3
+        run: |
+          BUCKET_NAME="www.cjtantay.com"
+          aws s3 sync build s3://$BUCKET_NAME
