@@ -41,7 +41,7 @@ resource "aws_s3_bucket_website_configuration" "sub_domain" {
   }
 
   error_document {
-    key = "index.html"
+    key = "404.html"
   }
 }
 
