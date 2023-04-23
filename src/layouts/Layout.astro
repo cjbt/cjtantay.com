@@ -1,4 +1,5 @@
 ---
+import "normalize.css";
 import Header from "@components/Header.astro";
 import MainHead from "@components/MainHead.astro";
 export interface Props {
@@ -19,14 +20,10 @@ const { title } = Astro.props;
       <slot />
     </main>
     <style is:global>
-      :root {
-        --accent: 124, 58, 237;
-        --accent-gradient: linear-gradient(
-          45deg,
-          rgb(var(--accent)),
-          #da62c4 30%,
-          white 60%
-        );
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
       }
       html {
         font-family: system-ui, sans-serif;
@@ -35,6 +32,46 @@ const { title } = Astro.props;
       code {
         font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
           DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+      }
+
+      p {
+        margin: 0 0 1.5em; /* Consistent margin for paragraphs */
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 700; /* Bold font weight */
+        line-height: 1.2; /* Tighter line-height for headings */
+        margin: 1.5em 0 1em; /* Consistent margin around headings */
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.75rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+      }
+      h4 {
+        font-size: 1.25rem;
+      }
+      h5 {
+        font-size: 1rem;
+      }
+      h6 {
+        font-size: 0.875rem;
+      }
+
+      body {
+        max-width: 1024 px;
+        width: 100%;
+        margin: 0 auto;
       }
 
       main {
