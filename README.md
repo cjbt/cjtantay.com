@@ -10,9 +10,9 @@ pnpm dev
 ```
 
 ## Tech Stack
+
 - Astro
 - solidjs (soon)
-- tailwind.css (soon)
-
+- tailwind.css
 
 Deployed by Vercel
