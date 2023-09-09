@@ -5,12 +5,13 @@
 ```zsh
 git clone https://github.com/cjbt/cjtantay.com.git
 cd cjtantay.com
-pnpm install
-pnpm dev
+bun install
+bun run dev
 ```
 
 ## Tech Stack
 
+- Bun 🚀
 - Astro
 - solidjs (soon)
 - tailwind.css
