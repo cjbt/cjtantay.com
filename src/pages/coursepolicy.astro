@@ -1,0 +1,35 @@
+---
+import Layout from '@layouts/Layout.astro';
+import githubIcon from '../images/github-icon.svg';
+import coursePolicyLarge from '../images/mywork/course-policy-large.png';
+---
+
+<Layout title="cjbt - CoursePolicy.AI">
+  <main class="flex flex-col items-center">
+    <div
+      transition:name="project-title"
+      class="grid grid-flow-col gap-4 items-baseline"
+    >
+      <h2><a href="https://coursepolicy.ai"> coursepolicy.ai</a></h2>
+      <a href="https://github.com/coursepolicy"
+        ><img src={githubIcon.src} alt="course policy small image" /></a
+      >
+    </div>
+
+    <p>an ai course policy generator for university professors</p>
+
+    <p class="m-0">full-stack - nextjs, aws platform</p>
+    <p class="m-0">
+      frontend: react query, tiptap editor, sst - aws cloudfront, aws s3,
+      typescript
+    </p>
+    <p>backend: aws lambda, serverless, middy, rds postgres, typescript</p>
+    <div
+      class="aspect-[4.2/1] w-[50%] flex flex-col items-center justify-center"
+      transition:name="project-image"
+    >
+      <img src={coursePolicyLarge.src} alt="course policy small image" />
+    </div>
+    <div class="pb-24"></div>
+  </main>
+</Layout>

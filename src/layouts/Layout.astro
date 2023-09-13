@@ -2,6 +2,8 @@
 import 'normalize.css';
 import Header from '@components/Header.astro';
 import MainHead from '@components/MainHead.astro';
+import Footer from '@components/Footer.astro';
+import GlobalStylesScript from '@components/GlobalStylesScript.astro';
 import { ViewTransitions } from 'astro:transitions';
 
 export type Props = {
@@ -17,66 +19,10 @@ const { title } = Astro.props;
     <MainHead title={title} />
     <ViewTransitions />
   </head>
-  <body class="max-w-[800px] w-[100%] mx-auto">
+  <body class="max-w-[1100px] w-[100%] mx-auto">
     <Header />
-    <main>
-      <slot />
-    </main>
-    <style is:global>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-      html {
-        font-family: system-ui, sans-serif;
-        background-color: #f6f6f6;
-      }
-      code {
-        font-family:
-          Menlo,
-          Monaco,
-          Lucida Console,
-          Liberation Mono,
-          DejaVu Sans Mono,
-          Bitstream Vera Sans Mono,
-          Courier New,
-          monospace;
-      }
-
-      p {
-        margin: 0 0 1.5em; /* Consistent margin for paragraphs */
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-weight: 700; /* Bold font weight */
-        line-height: 1.2; /* Tighter line-height for headings */
-        margin: 1.5em 0 1em; /* Consistent margin around headings */
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-      h2 {
-        font-size: 1.5rem;
-      }
-      h3 {
-        font-size: 1.25rem;
-      }
-      h4 {
-        font-size: 1rem;
-      }
-      h5 {
-        font-size: 0.875rem;
-      }
-      h6 {
-        font-size: 0.5rem;
-      }
-    </style>
+    <slot />
+    <Footer />
+    <GlobalStylesScript />
   </body>
 </html>

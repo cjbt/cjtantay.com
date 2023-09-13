@@ -1,17 +1,29 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import githubIcon from '../images/github-icon.svg';
+import coursePolicySmall from '../images/mywork/course-policy-small.png';
 ---
 
 <Layout title="cjbt - Main">
-  <h2>My work</h2>
-  <section class="flex items-center">
-    <h3>
-      <a class="text-blue-500 hover:underline" href="https://coursepolicy.ai"
-        >coursepolicy.ai</a
+  <main>
+    <div class="pt-24"></div>
+    <a href="/coursepolicy">
+      <section
+        class="grid grid-cols-1 gap-10 sm:grid-cols-[repeat(auto-fit,minmax(34%,1fr))] md:justify-center items-center justify-items-center"
       >
-    </h3>
-    <a class="ml-[10px] mt-[10px]" href="https://github.com/cjbt">
-      <img src="/socials/github-icon.svg" alt="link to my github" />
+        <article
+          class="grid grid-flow-row items-center gap-4 sm:max-w-[315px] sm:mx-0 mx-[10px]"
+        >
+          <div class="aspect-[4.2/1] w-[100%]" transition:name="project-image">
+            <img src={coursePolicySmall.src} alt="course policy small image" />
+          </div>
+          <div>
+            <p class="m-0" transition:name="project-title">coursepolicy.ai</p>
+            <p class="m-0">full-stack - nextjs, aws platform</p>
+          </div>
+        </article>
+      </section>
     </a>
-  </section>
+    <div class="pb-24"></div>
+  </main>
 </Layout>
