@@ -1,6 +1,5 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import githubIcon from '../images/github-icon.svg';
 import coursePolicySmall from '../images/mywork/course-policy-small.png';
 ---
 
@@ -9,13 +8,17 @@ import coursePolicySmall from '../images/mywork/course-policy-small.png';
     <div class="pt-24"></div>
     <a href="/coursepolicy">
       <section
-        class="grid grid-cols-1 gap-10 sm:grid-cols-[repeat(auto-fit,minmax(34%,1fr))] md:justify-center items-center justify-items-center"
+        class="grid grid-cols-1 gap-10 sm:gap-1 sm:grid-cols-[repeat(auto-fit,minmax(33%,1fr))] md:justify-center items-center justify-items-center"
       >
         <article
-          class="grid grid-flow-row items-center gap-4 sm:max-w-[315px] sm:mx-0 mx-[10px]"
+          class="grid grid-flow-row items-center gap-4 sm:max-w-[315px] sm:mx-0 mx-[10px] overflow-hidden"
         >
-          <div class="aspect-[4.2/1] w-[100%]">
-            <img src={coursePolicySmall.src} alt="course policy small image" />
+          <div class="relative h-[75px] w-[315px]">
+            <img
+              class="absolute inset-0 h-full w-full object-cover object-center"
+              src={coursePolicySmall.src}
+              alt="course policy small image"
+            />
           </div>
           <div>
             <p class="m-0" transition:name="project-title">coursepolicy.ai</p>
