@@ -6,7 +6,6 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "postbuild": "node scripts/fix-runtime.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
